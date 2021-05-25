@@ -29,7 +29,7 @@ Example Playbook
 ----------------
 Register the role in requirements.yml:
 ```yaml
-- src: capitanh.sonar-ansible-role
+- src: capitanh.sonar_ansible_role
   name: sonar
 ```
 Include it in your playbooks:
