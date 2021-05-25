@@ -1,0 +1,33 @@
+---
+- name: Install base packages
+  apt:
+    name: "{{packages}}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+    - unzip
+    - openjdk-11-jre-headless
+
+- name: Create service user
+  user:
+    name: "{{sonar_user}}"
+    create_home: no
+    system: yes
+
+- name: Download sonar archive
+  unarchive:
+    src: "https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{sonar_version}}.zip"
+    dest: /opt
+    remote_src: yes
+    validate_certs: no
+    owner: "{{sonar_user}}"
+    group: "{{sonar_user}}"
+
+- name: Copy config template
+  template:
+    src: sonar.properties
+    dest: /opt/sonarqube-{{sonar_version}}/conf/sonar.properties
+    mode: 0644
+    owner: "{{sonar_user}}"
+    group: "{{sonar_user}}"
