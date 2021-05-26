@@ -24,10 +24,10 @@
     owner: "{{sonar_user}}"
     group: "{{sonar_user}}"
 
-#- name: Copy config template
-#  template:
-#    src: sonar.properties
-#    dest: /opt/sonarqube-{{sonar_version}}/conf/sonar.properties
-#    mode: 0644
-#    owner: "{{sonar_user}}"
-#    group: "{{sonar_user}}"
+- name: Copy config template
+  template:
+    src: sonar.properties
+    dest: /opt/sonarqube-{{sonar_version}}/conf/sonar.properties
+    mode: 0644
+    owner: "{{sonar_user}}"
+    group: "{{sonar_user}}"
